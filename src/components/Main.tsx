@@ -52,7 +52,6 @@ const Main : React.FC = function () {
       <Player url={url}/>
 
       <button className='button-start' type="button" onClick={() => {
-
         setCount(0);
         setArr(Array(9).fill(null))
       }}>
@@ -62,7 +61,7 @@ const Main : React.FC = function () {
         {
           numberArr.map(number => (
             <div key={number} className='cell' onClick={(e) => handleClick(e)} id={`${number}`}>
-              {arr[number]}
+              <span className='symbol'>{arr[number]}</span>
             </div>
           ))
         }
