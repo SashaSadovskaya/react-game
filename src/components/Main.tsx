@@ -1,16 +1,20 @@
-import React, {Component, useState} from 'react';
-
+import React, {Component, useEffect, useState} from 'react';
 import './Main.scss'
+import TransitionsModal from "../ModalWindow";
+
 
 const Main : React.FC = function () {
-  const [state, setState] = useState({});
+
+  const [state, setState] = useState<object>({});
   const [arr, setArr] = useState(Array(9).fill(null));
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
+  const numberArr: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  const [result, setResult] = useState<any>('');
 
   const handleClick = (e: any) => {
-    let cellNumber = e.target.getAttribute('id');
+    let cellNumber: number = e.target.getAttribute('id');
     if (arr[cellNumber] === null) {
-      arr[cellNumber] = (count % 2 === 0) ? 'X' : 'O';
+      arr[cellNumber] = (count % 2 === 0) ? 'x' : 'o';
       isWin(arr[cellNumber] );
       setCount(count + 1);
     }
@@ -31,55 +35,34 @@ const Main : React.FC = function () {
   const isWin = (symb: string) => {
     for (let i = 0; i < 8; i++){
       let line = winningCombinations[i];
-      console.log('line ' + line);
-      console.log('arr[line[0]] '+ arr[line[0]] + arr[line[1]] + arr[line[2]]);
       if(arr[line[0]] === symb && arr[line[1]] === symb && arr[line[2]] === symb){
-        alert('you win');
-        setTimeout(() => {
-          setCount(0);
-          setArr(Array(9).fill(null))
-        }, 2000)
+        setResult(<TransitionsModal symb = {symb}/>);
+
+        setTimeout(() => {setArr(Array(9).fill(null));
+        }, 3000);
       }
-      console.log('dalshe')
     }
   };
 
   return (
     <div className='main-container'>
-      <button type="button" onClick={() => {
+      <button className='button-start' type="button" onClick={() => {
         setCount(0);
         setArr(Array(9).fill(null))
       }}>
         New game
       </button>
       <div className='board'>
-        <div className='cell' onClick={(e) => handleClick(e)} id='0'>
-          {arr[0]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='1'>
-          {arr[1]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='2'>
-          {arr[2]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='3'>
-          {arr[3]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='4'>
-          {arr[4]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='5'>
-          {arr[5]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='6'>
-          {arr[6]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='7'>
-          {arr[7]}
-        </div>
-        <div className='cell' onClick={(e) => handleClick(e)} id='8'>
-          {arr[8]}
-        </div>
+        {
+          numberArr.map(number => (
+            <div key={number} className='cell' onClick={(e) => handleClick(e)} id={`${number}`}>
+              {arr[number]}
+            </div>
+          ))
+        }
+      </div>
+      <div className='result'>
+        {result}
       </div>
     </div>
   );

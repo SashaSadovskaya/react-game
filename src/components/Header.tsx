@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import './Header.scss'
 
 function Header (props: any) {
   return (
-    <div>
-      <h1>Tic Tac Toe</h1>
+    <div className='header-container'>
+      <h1 className='header-title'>Tic Tac Toe</h1>
     </div>
   );
 }
