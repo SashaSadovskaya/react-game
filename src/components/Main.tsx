@@ -1,7 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 import './Main.scss'
-import TransitionsModal from "../ModalWindow";
 import Player from "./Player";
+import TransitionsModal from "./ModalWindow";
 
 
 const Main : React.FC = function () {
@@ -11,12 +11,21 @@ const Main : React.FC = function () {
   const [count, setCount] = useState<number>(0);
   const numberArr: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   const [result, setResult] = useState<any>('');
-  const url = '../sounds/s1.mp3';
+  const urlNewGame = require('../sounds/s4.mp3');
+  const [soundNewGame] = useState(new Audio(urlNewGame.default));
+  const urlWin = require('../sounds/win.mp3');
+  const [soundWin] = useState(new Audio(urlWin.default));
+  const urlSoundO = require('../sounds/s1.mp3');
+  const [soundO ] = useState(new Audio(urlSoundO .default));
+  const urlSoundX = require('../sounds/s2.mp3');
+  const [soundX ] = useState(new Audio(urlSoundX .default));
+
 
   const handleClick = (e: any) => {
     let cellNumber: number = e.target.getAttribute('id');
     if (arr[cellNumber] === null) {
       arr[cellNumber] = (count % 2 === 0) ? 'x' : 'o';
+      count % 2 === 0 ? soundO.play() : soundX.play();
       isWin(arr[cellNumber] );
       setCount(count + 1);
     }
@@ -39,7 +48,7 @@ const Main : React.FC = function () {
       let line = winningCombinations[i];
       if(arr[line[0]] === symb && arr[line[1]] === symb && arr[line[2]] === symb){
         setResult(<TransitionsModal symb = {symb}/>);
-
+        soundWin.play();
         setTimeout(() => {setArr(Array(9).fill(null));
         }, 3000);
       }
@@ -49,9 +58,10 @@ const Main : React.FC = function () {
 
     return (
     <div className='main-container'>
-      <Player url={url}/>
+      <Player/>
 
       <button className='button-start' type="button" onClick={() => {
+        soundNewGame.play();
         setCount(0);
         setArr(Array(9).fill(null))
       }}>
