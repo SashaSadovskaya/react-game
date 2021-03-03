@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './Header.scss'
+import './Header.scss';
+
 
 function Header (props: any) {
   return (

@@ -1,6 +1,7 @@
 import React, {Component, useEffect, useState} from 'react';
 import './Main.scss'
 import TransitionsModal from "../ModalWindow";
+import Player from "./Player";
 
 
 const Main : React.FC = function () {
@@ -10,6 +11,7 @@ const Main : React.FC = function () {
   const [count, setCount] = useState<number>(0);
   const numberArr: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   const [result, setResult] = useState<any>('');
+  const url = '../sounds/s1.mp3';
 
   const handleClick = (e: any) => {
     let cellNumber: number = e.target.getAttribute('id');
@@ -44,9 +46,13 @@ const Main : React.FC = function () {
     }
   };
 
-  return (
+
+    return (
     <div className='main-container'>
+      <Player url={url}/>
+
       <button className='button-start' type="button" onClick={() => {
+
         setCount(0);
         setArr(Array(9).fill(null))
       }}>
