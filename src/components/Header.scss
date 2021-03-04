@@ -1,0 +1,11 @@
+.header-container{
+  background: #60a3d8 linear-gradient(#89bbe2, #60a3d8 50%, #378bce);
+  color: white;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .header-title{
+    margin: 0;
+  }
+}
