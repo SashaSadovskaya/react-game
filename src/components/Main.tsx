@@ -50,6 +50,7 @@ const Main: React.FC = function () {
         soundWin.play();
         setTimeout(() => {
           setArr(Array(9).fill(null));
+          setResult('');
         }, 3000);
       }
     }
