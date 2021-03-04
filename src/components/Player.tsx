@@ -32,7 +32,7 @@ const Player = () => {
   return (
     <div>
       <span>Background music: </span>
-      <button className='music-button' onClick={(event) => typeof toggle !== "boolean" && toggle()}>{playing ? "Pause" : "Play"}</button>
+      <button className='music-button' onClick={() => typeof toggle !== "boolean" && toggle()}>{playing ? "Pause" : "Play"}</button>
     </div>
   );
 };

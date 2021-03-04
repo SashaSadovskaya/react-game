@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './Main.scss'
 import Player from "./Player";
 import TransitionsModal from "./ModalWindow";
