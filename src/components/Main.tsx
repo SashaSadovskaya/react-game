@@ -10,13 +10,13 @@ const Main: React.FC = function () {
   const [count, setCount] = useState<number>(0);
   const numberArr: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   const [result, setResult] = useState<any>('');
-  const urlNewGame = require('../sounds/s4.mp3');
+  const urlNewGame = require('./sounds/s4.mp3');
   const [soundNewGame] = useState(new Audio(urlNewGame.default));
-  const urlWin = require('../sounds/win.mp3');
+  const urlWin = require('./sounds/win.mp3');
   const [soundWin] = useState(new Audio(urlWin.default));
-  const urlSoundO = require('../sounds/s1.mp3');
+  const urlSoundO = require('./sounds/s1.mp3');
   const [soundO] = useState(new Audio(urlSoundO.default));
-  const urlSoundX = require('../sounds/s2.mp3');
+  const urlSoundX = require('./sounds/s2.mp3');
   const [soundX] = useState(new Audio(urlSoundX.default));
 
 

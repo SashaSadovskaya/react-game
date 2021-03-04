@@ -3,7 +3,7 @@ import './Player.scss'
 
 
 const useAudio = () => {
-  const sound = require('../sounds/fon.mp3');
+  const sound = require('./sounds/fon.mp3');
   const [audio] = useState(new Audio(sound.default));
 
   const [playing, setPlaying] = useState(false);
